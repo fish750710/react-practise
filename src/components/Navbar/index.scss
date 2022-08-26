@@ -1,0 +1,16 @@
+.nav-box{
+  width: 100%;
+  height: 80px;
+  background-color: gray;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: #fff;
+  .nav{
+    // margin: 10px 20px;
+    padding: 10px 20px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+}

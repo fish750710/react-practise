@@ -1,0 +1,10 @@
+@charset 'UTF-8';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'reset';
+@import 'mixins';
+@import 'variables';
+@import 'base';

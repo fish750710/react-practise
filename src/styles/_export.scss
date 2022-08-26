@@ -1,0 +1,14 @@
+@import 'variables';
+
+:export {
+  parmary_color: $primary_color;
+  secondary_color: $secondary_color;
+  bg_color: $bg_color;
+  bg_sub_color: $bg_sub_color;
+  bg_secondary_color: $bg_secondary_color;
+  font_color: $font_color;
+  font_sub_color: $font_sub_color;
+  font_secondary_color: $font_secondary_color;
+  font_light: $font_light;
+  font_title: $font_title;
+}

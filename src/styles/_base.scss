@@ -1,0 +1,35 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 10px;
+}
+body {
+    box-sizing: border-box;
+    font-family: $fontfamily;
+    font-size: 14px;
+    font-weight: 400;
+    color: #949494;
+}
+#app {
+    display: block;
+    margin: auto;
+    font-family: $fontfamily;
+    a {
+        text-decoration: none;
+        outline: none;
+        cursor: default;
+    }
+    h1 {
+        font-size: 1.6rem;
+        color: #262626;
+        white-space: pre-wrap;
+    }
+    button {
+        outline: none;
+    }
+}

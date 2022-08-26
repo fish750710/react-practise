@@ -1,0 +1,32 @@
+$xxlw: 1450px; // xxl
+$xlw: 1280px; // xl
+$lgw: 1024px; // lg
+$mdw: 768px;  // md
+$smw: 640px; // sm
+$xsw: 480px; // xs
+$ssw: 340px; // ss
+
+$breakpoints: (
+  'xxl': 'screen and (max-width: #{$xxlw})', // 1450px
+  'xl': 'screen and (max-width: #{$xlw})', // 1280px
+  'lg': 'screen and (max-width: #{$lgw})', // 1024px
+  'md': 'screen and (max-width: #{$mdw})', // 768px
+  'sm': 'screen and (max-width: #{$smw})', // 768px
+  'xs': 'screen and (max-width: #{$xsw})', // 480px
+  'ss': 'screen and (max-width: #{$ssw})', // 340px
+);
+
+@mixin respond-to($name) {
+  @media #{map-get($breakpoints, $name)} {
+    @content;
+  }
+};
+
+// bootstrap    tailwind
+// xs < 576     
+// sm >= 576    640
+// md >= 768    768
+// lg >= 992    1024
+// xl >= 1200   1280
+// xxl >= 1400  1536
+

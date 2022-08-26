@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, Link, RouteObject, routerConifg, useRoutes } from 'react-router-dom';
+import routerConfig from 'routes';
 
 function App() {
+  const elements = useRoutes(routerConfig);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {elements}
+      {/* <Routes>
+        <Route path="/" element={<Home />} >
+          <Route path="main" element={<Main />} />
+          <Route path="about" element={<About />} /> 
+          <Route path="invoices" element={<Invoices />}>
+            <Route path=":invoiceId" element={<Invoice />} />
+          </Route>
+          <Route path="*" element={<Login />}></Route>  
+        </Route>
+      </Routes> */}
     </div>
   );
 }

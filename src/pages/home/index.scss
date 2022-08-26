@@ -1,0 +1,29 @@
+@import 'styles/main.scss';
+
+main {
+  padding: 10px;
+}
+button {
+  border: 1px solid;
+  padding: 5px 10px;
+  margin: 10px;
+  width: 100px;
+  height: 50px;
+}
+.setion{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  @include respond-to(xl) {
+    color: red;
+  };
+  @include respond-to(lg) {
+    color: green;
+  };
+  @include respond-to(md) {
+    color: purple;
+  };
+  @include respond-to(sm) {
+    color: peru;
+  };
+}

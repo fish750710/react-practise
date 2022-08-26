@@ -1,0 +1,11 @@
+@import 'styles/main.scss';
+.footer-box {
+  height: 100px;
+  background-color: $bg_sub_color;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  
+}
