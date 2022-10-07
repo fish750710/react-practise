@@ -53,6 +53,9 @@ function Navbar() {
         <NavLink to="/billing" className={isActive}>Billing</NavLink>
       </NavStyled>
       <NavStyled>
+        <NavLink to="/photo" className={isActive}>Photo</NavLink>
+      </NavStyled>
+      <NavStyled>
         <NavLink to="/login" className={isActive}>登錄</NavLink>
       </NavStyled>
     </NabBoxStyled>

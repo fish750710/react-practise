@@ -25,13 +25,28 @@ function Billing() {
 
   const [filterData, updateFilterData] = useState('');
   function searchKey() {
+    console.log('search..')
     if (key.length <= 0) return;
     const list = data.filter((item) => item.properties.StoreName.indexOf(key) !== -1);
     updateFilterData(list);
   }
 
   // const refData = useRef('test123');
-  // console.log('refData', refData);
+  // console.log('refData', refData.current);
+  const refText = useRef();
+  useEffect(() => {
+    if (refText.current) {
+      console.log(refText.current);
+      return;
+    };
+  }, []);
+
+  const refInput = useRef();
+  const clickInputHandler = () => {
+    refInput.current.focus();
+    console.log(refInput.current.value);
+  }
+
   return (
     <>
       <div>
@@ -46,6 +61,10 @@ function Billing() {
       <button type='button' onClick={searchKey}>搜尋</button>
       <div>filter: {JSON.stringify(filterData)}</div>
       url: {url}
+      <hr></hr>
+      <div ref={refText}>這是一段字</div>
+      <input type="text" ref={refInput}></input>
+      <button type='button' onClick={clickInputHandler}>抓input value</button>
     </>
   )
 }

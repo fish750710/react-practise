@@ -18,7 +18,7 @@ class Footer extends React.Component {
     return(
       <footer className='footer-box' onClick={() => this.updateFooterText()}>
         {this.state.text}<br />
-        {this.state.name}
+        {/* {this.state.name} */}
       </footer>
     );
   }

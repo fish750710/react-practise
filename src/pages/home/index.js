@@ -52,8 +52,6 @@ function Home() {
             <button onClick={ delItem.bind(this, invoice.name)}>del2<br/>(第二種傳參)</button>
           </div>
         ))}
-      
-
       </nav>
       <div className='setion'>
         <div>redux value: {value}</div>

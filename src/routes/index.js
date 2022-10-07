@@ -7,6 +7,7 @@ import About from 'pages/about';
 import Login from 'pages/login';
 import Billing from 'pages/billing';
 import Counter from 'pages/counter';
+import Photo from 'pages/photo';
 
 const routerConfig = [
   {
@@ -36,6 +37,10 @@ const routerConfig = [
       {
         path: "/counter",
         element: <Counter />,
+      },
+      {
+        path: "/photo",
+        element: <Photo />,
       },
       // {
       //   path: "/billing/sendRe/:id",
