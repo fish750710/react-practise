@@ -88,6 +88,7 @@ function SearchResults() {
   }, [getFetchUrl]);
 }
 
+// 經常變更不一樣的 props 不建議使用 memo。因為使用 memo 也是需要消耗記憶效能
 function ColorPicker() {
   const [color, setColor] = useState('pick');
   const style = useMemo(() => { color }, [color]);
