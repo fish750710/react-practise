@@ -1,5 +1,8 @@
-import { useRef, useState, useEffect, useCallback, useMemo } from 'react';
-import axios from 'axios';
+import { useRef, useState, useEffect, useCallback, useMemo, memo } from 'react';
+// import axios from 'axios';
+import { useAxios } from 'hooks/useAxios';
+import './index.scss';
+
 // import { useSelector, useDispatch } from 'react-redux'
 
 function Billing() {
@@ -8,19 +11,27 @@ function Billing() {
   const [data, setData] = useState([]);
   const [key, setKey] = useState('');
   const [url, setUrl] = useState(BaseUrl);
+
+  const { isLoading, error, sendRequest } = useAxios();
+
   useEffect(() => {
     // 放在 useEffect裡，第二參數可以 []
-    const fetchData = async() => {
-      try {
-        const { data: resData } = await axios.get(url);
-        if(resData.ResultStatus !== 200) return;
-        setData(resData.ResultData);
-      } catch (error) {
-        console.log(error);
-      }
-      // console.log(resData);
-    }
-    fetchData();
+    // const fetchData = async() => {
+    //   try {
+    //     const { data: resData } = await axios.get(url);
+    //     if(resData.ResultStatus !== 200) return;
+    //     setData(resData.ResultData);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    //   // console.log(resData);
+    // }
+    // fetchData();
+
+    sendRequest({url}, (res) => {
+      if(res.ResultStatus !== 200) return;
+      setData(res.ResultData);
+    })
   }, []); // 第二參數加入 url
 
   const [filterData, updateFilterData] = useState('');
@@ -47,8 +58,13 @@ function Billing() {
     console.log(refInput.current.value);
   }
 
+  const isShow = isLoading ? 'show' : 'hide';
+
   return (
     <>
+      <div className={`load-box ${isShow}`}>
+        <div className='loading'>Loading...</div>
+      </div>
       <div>
         {data.map((item, index) => (
           <div key={index}>{item.properties.StoreName}</div>
@@ -88,9 +104,20 @@ function SearchResults() {
   }, [getFetchUrl]);
 }
 
-// 經常變更不一樣的 props 不建議使用 memo。因為使用 memo 也是需要消耗記憶效能
+// useCallback (透過記憶 function 的記憶體位置，來避免子物件的重新渲染) 
+
+// React.memo (經常變更不一樣的 props 不建議使用 memo。因為使用 memo 也是需要消耗記憶效能)
+const child = memo(({reset}) => {
+  return (
+    <>
+      <button onClick={reset}>Reset</button>
+    </>
+  )
+})
+
+// useMemo (透過保存耗時的運算結果，在 dependency array 未改變時引用前次的運算結果)
 function ColorPicker() {
   const [color, setColor] = useState('pick');
-  const style = useMemo(() => { color }, [color]);
+  const style = useMemo(() => { color }, [color]); // 第一參數為 callback, 第二參數變更才重新 render (shallow compare)
   return <Child style={style} />
 }

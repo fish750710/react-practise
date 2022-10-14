@@ -2,30 +2,18 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, setAccountUser, getData } from '../../store/user';
-// import { useInput } from '../hooks/useInput';
 import { Box, TextField, Button } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { parse } from 'postcss';
+// import { parse } from 'postcss';
 
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLogin = useSelector((state) => state.isLogin);
-  const isLoadding = useSelector((state) => state.isLoadding);
-  const storeList = useSelector((state) => state.storeList);
-  // const [email, setEmail] = useInput({
-  //   placeholder: '請輸入eamil',
-  //   type: 'email',
-  //   id: 'email',
-  //   name: 'email',
-  // });
-  // const [password, setPassword] = useInput({
-  //   placeholder: '請輸入密碼',
-  //   type: 'password',
-  //   id: 'password',
-  //   name: 'password',
-  // });
+  const isLogin = useSelector((state) => state.user.isLogin);
+  const isLoadding = useSelector((state) => state.user.isLoadding);
+  const storeList = useSelector((state) => state.user.storeList);
+
 
   // 2023/3 即將棄用
   // function initGapi() {
@@ -219,32 +207,23 @@ function Login() {
   
   return (
     <>
-      {/* <form onSubmit={loginHandler}>
+      
+      <div>
+        API TEST:
         <div>
-          <label htmlFor="email">Email</label>
-          {setEmail}
-          <input type="email" id="email" name="email" placeholder="請輸入eamil" />
+          <button className='border-2' onClick={getApi}>getData</button>
         </div>
         <div>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="請輸入密碼" />
-          {setPassword}
+          <button onClick={getData2}>redux getData </button>
         </div>
-      </form> */}
+        <ul className='bg-yellow-500'>
+          {storeList && storeList.map((item, index)=> (
+            <li key={index}>{JSON.stringify(item)}</li>
+          ))}
+        </ul>
+        {/* <div>storeList: {storeList}</div> */}
 
-      <ul className='bg-yellow-500'>
-        {storeList.map((item, index)=> (
-          <li key={index}>{JSON.stringify(item)}</li>
-        ))}
-      </ul>
-      <div>storeList.length: {storeList.length}</div>
-
-      {isLoadding? 'loading...': ''}
-      <div>
-        <button className='border-2' onClick={getApi}>getData</button>
-      </div>
-      <div>
-        <button onClick={getData2}>redux getData </button>
+        {isLoadding? 'loading...': ''}
       </div>
       <div>
         <button onClick={back}>上一頁</button>
@@ -261,8 +240,8 @@ function Login() {
         }}
       >
         <main>
-          <h2>Login</h2>
-          {isLogin ? 'true' : 'false'}
+          <h2>Login: {isLogin ? 'true' : 'false'}</h2>
+          
           <p>google</p>
         </main>
         <div style={{ color: 'red' }}>{message}</div>

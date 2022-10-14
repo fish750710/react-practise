@@ -1,5 +1,6 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import user from './user';
+import auth from './auth';
 import { logger } from '../middleware';
 
 // import { createStore } from 'redux'; 已棄用
@@ -9,7 +10,7 @@ import { logger } from '../middleware';
 // })
 const store = configureStore({
   // reducer,
-  reducer: user,
+  reducer: { user, auth },
   middleware: (getMiddleware) => {
     return getMiddleware().concat(logger);
   }

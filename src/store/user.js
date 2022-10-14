@@ -1,10 +1,10 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createAction, createReducer } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const getData = createAsyncThunk('user/getData', async (params, thunkAPI) => {
   const url = 'https://api.justplus1.com.tw/api/mapcommon/list';
   const { data } = await axios.get(url);
-  console.log('resData2', params, thunkAPI) 
+  // console.log('resData2', params, thunkAPI, data) 
   return data;
 })
 
@@ -41,6 +41,7 @@ const userSlice = createSlice({
     },
     setStoreList(state, { payload }) {
       state.storeList = payload.ResultData;
+      // console.log('payload', payload, state.storeList);
     },
     setAccountUser(state, { payload }) {
       state.isLogin = true;

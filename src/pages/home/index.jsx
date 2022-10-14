@@ -15,7 +15,7 @@ function Home() {
 
   const dispatch = useDispatch();
   // const user = useSelector(state => state);
-  const { value, isLoadding, name }= useSelector(state => state);
+  const { value, isLoadding, name }= useSelector(state => state.user);
   const handleIncrement = () => {
     dispatch(increment(5))
   }
