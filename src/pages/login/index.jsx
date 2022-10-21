@@ -1,7 +1,7 @@
 // import { Outlet, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { login, setAccountUser, getData } from '../../store/user';
+import { login, setAccountUser } from '../../store/user';
 import { Box, TextField, Button } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -11,10 +11,7 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.user.isLogin);
-  const isLoadding = useSelector((state) => state.user.isLoadding);
-  const storeList = useSelector((state) => state.user.storeList);
-
-
+  
   // 2023/3 即將棄用
   // function initGapi() {
   //   console.log('init')
@@ -147,15 +144,6 @@ function Login() {
     }
   };
 
-  const getApi = async() => {
-    const url = 'https://api.justplus1.com.tw/api/mapcommon/list';
-    const { data:resData } = await axios.get(url);
-    if (resData.ResultStatus !== 200) return;
-    console.log('resData', resData)
-  }
-  const getData2 = () => {
-    dispatch(getData('1111'));
-  }
   function back() {
     navigate(-1);
   }
@@ -207,30 +195,10 @@ function Login() {
   
   return (
     <>
-      
-      <div>
-        API TEST:
-        <div>
-          <button className='border-2' onClick={getApi}>getData</button>
-        </div>
-        <div>
-          <button onClick={getData2}>redux getData </button>
-        </div>
-        <ul className='bg-yellow-500'>
-          {storeList && storeList.map((item, index)=> (
-            <li key={index}>{JSON.stringify(item)}</li>
-          ))}
-        </ul>
-        {/* <div>storeList: {storeList}</div> */}
-
-        {isLoadding? 'loading...': ''}
-      </div>
       <div>
         <button onClick={back}>上一頁</button>
       </div>
-      
-      
-      
+
       <Box
         sx={{
           marginTop: 8,
@@ -241,8 +209,6 @@ function Login() {
       >
         <main>
           <h2>Login: {isLogin ? 'true' : 'false'}</h2>
-          
-          <p>google</p>
         </main>
         <div style={{ color: 'red' }}>{message}</div>
         <Box component='form' onSubmit={handleSubmit} sx={{ mt: 1 }}>

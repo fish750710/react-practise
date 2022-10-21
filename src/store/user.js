@@ -4,7 +4,7 @@ import axios from 'axios';
 export const getData = createAsyncThunk('user/getData', async (params, thunkAPI) => {
   const url = 'https://api.justplus1.com.tw/api/mapcommon/list';
   const { data } = await axios.get(url);
-  // console.log('resData2', params, thunkAPI, data) 
+  console.log('resData2', params, thunkAPI, data) 
   return data;
 })
 
@@ -55,18 +55,19 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getData.pending, (state, action) => {
       state.isLoadding = true;
-      // console.log('pending')
+      console.log('pending')
     })
     builder.addCase(getData.rejected, (state, action) => {
+      // error
       console.log('rejected')
       state.isLoadding = false;
     })
     builder.addCase(getData.fulfilled, (state, action) => {
+      // success
       state.isLoadding = false;
       // state.storeList = action.payload.ResultData;
       userSlice.caseReducers.setStoreList(state, action);
-      // console.log('fulfilled', action)
-
+      console.log('fulfilled', action)
     })
   },
 })

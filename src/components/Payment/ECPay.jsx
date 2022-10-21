@@ -147,6 +147,26 @@ function EcPay(props) {
         setMessage(parseData.RtnMsg);
       }
     }
+    // await fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'content-type': 'application/json',
+    //   },
+    //   body: JSON.stringify(body),
+    // }).then(response => { 
+    //   return response.json();
+    // }).then(responseData => {
+    //   console.log('responseData',responseData)
+    //   if (responseData.TransCode === 1) {
+    //     const parseData = JSON.parse(decryption(responseData.Data));
+    //     // console.log('parseData', parseData);
+    //     if (parseData.RtnCode === 1) {
+    //       return parseData.Token;
+    //     } else {
+    //       setMessage(parseData.RtnMsg);
+    //     }
+    //   }
+    // });
   }
   async function createPayment(token, payToken) {
     const url = 'https://ecpg-stage.ecpay.com.tw/Merchant/CreatePayment';

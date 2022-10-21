@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Outlet, useParams } from 'react-router-dom';
-import { increment, decrement, toggleLodding } from '../../store/user';
+import { increment, decrement, toggleLodding } from 'store/user';
 import { getInvoices } from 'data';
 import './index.scss';
 import axios from 'axios';

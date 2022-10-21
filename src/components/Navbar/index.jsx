@@ -59,6 +59,9 @@ function Navbar() {
         <NavLink to="/payment" className={isActive}>Payment</NavLink>
       </NavStyled>
       <NavStyled>
+        <NavLink to="/redux" className={isActive}>Redux</NavLink>
+      </NavStyled>
+      <NavStyled>
         <NavLink to="/login" className={isActive}>登錄</NavLink>
       </NavStyled>
     </NabBoxStyled>

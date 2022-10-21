@@ -9,6 +9,7 @@ import Billing from 'pages/billing';
 import Counter from 'pages/counter';
 import Photo from 'pages/photo';
 import Payment from 'pages/payment';
+import Redux from 'pages/redux';
 
 const routerConfig = [
   {
@@ -46,6 +47,10 @@ const routerConfig = [
       {
         path: "/payment",
         element: <Payment />
+      },
+      {
+        path: "/redux",
+        element: <Redux />
       }
       // {
       //   path: "/billing/sendRe/:id",
