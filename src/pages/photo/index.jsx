@@ -91,7 +91,7 @@ const index = () => {
         setCurrentSearch(input); 
       }} setInput={setInput}/>
       <div className='pictures'>
-        {data && data.map(d => <Picture data={d} key={d.id} isLoading={loading} />)}
+        {data?.map(d => <Picture data={d} key={d.id} isLoading={loading} />)}
       </div>
       <div className='morePicture'>
         <button onClick={morepicture}>Load More</button>

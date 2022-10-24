@@ -1,24 +1,33 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
 import { logger } from '../middleware';
 
 import user from './user';
 import auth from './auth';
-import cakeReducer from './slices/cakeSlice';
-import coffeeReducer from './slices/coffeeSlice';
-import assetsReducer from './slices/assetsSlice';
+import cakeSlice from './slices/cakeSlice';
+import coffeeSlice from './slices/coffeeSlice';
+import assetsSlice from './slices/assetsSlice';
+
+import { pokemonApi } from './api/pokemonApi';
 
 const store = configureStore({
   reducer: { 
     user,
     auth,
-    cake: cakeReducer,
-    coffee: coffeeReducer,
-    assets: assetsReducer,
+    cake: cakeSlice,
+    coffee: coffeeSlice,
+    assets: assetsSlice,
+    [pokemonApi.reducerPath]: pokemonApi.reducer,
   },
-  middleware: (getMiddleware) => {
-    return getMiddleware().concat(logger);
-  }
+  // middleware: (getMiddleware) => {
+  //   return getMiddleware().concat(logger);
+  // }
+  // 啟用 api 緩存
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(pokemonApi.middleware).concat(logger),
 })
+
+setupListeners(store.dispatch)
 
 export default store;
 

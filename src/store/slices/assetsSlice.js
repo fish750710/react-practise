@@ -14,6 +14,7 @@ const assetsSlice = createSlice({
     // 入帳 
     // 依賴 cakeActions.cakeOrdered 更新資料
     builder.addCase(cakeActions.cakeOrdered, (state, action) => {
+      // console.log('action', action)
       state.money = state.money + action.payload.money;
     })
     // 扣款

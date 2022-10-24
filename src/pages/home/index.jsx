@@ -45,7 +45,7 @@ function Home() {
   return (
     <main style={{ display: "flex"}}>
       <nav style={{color: "blue", padding: "1rem", border: '1px solid'}}>
-        {list.map((invoice, index) => (
+        {list?.map((invoice, index) => (
           <div key={index}>
             <p>{invoice.name}</p>
             <button onClick={(e) => delItem(e, invoice.name)}>del<br/>(第一種傳參)</button>

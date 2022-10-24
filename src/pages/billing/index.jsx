@@ -85,7 +85,7 @@ function Billing() {
         </div>
       </div>
       <div>
-        {data.map((item, index) => (
+        {data?.map((item, index) => (
           <div key={index}>{item.properties.StoreName}</div>
         ))}
       </div>

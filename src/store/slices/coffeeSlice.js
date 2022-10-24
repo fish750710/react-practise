@@ -11,6 +11,7 @@ const coffeeSlice = createSlice({
     // 銷售
     coffeeOrdered: (state, action) => {
       state.numOfCoffee = state.numOfCoffee - action.payload.qty;
+      // console.log('coffee', action, state.numOfCoffee)
     },
     // 補貨
     coffeeRestocked: (state, action) => {
