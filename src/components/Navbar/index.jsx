@@ -1,8 +1,11 @@
 import React from 'react';
 // import './index.scss';
-import { NavLink, Link, useParams, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
+import { NavLink, Link, useParams, useNavigate, useLocation, useSearchParams, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import styles from 'styles/_export.scss';
+
+// import Home from 'pages/home';
+// import About from 'pages/about';
 
 const NabBoxStyled = styled.div`
   width: 100%;
@@ -64,6 +67,11 @@ function Navbar() {
       <NavStyled>
         <NavLink to="/login" className={isActive}>登錄</NavLink>
       </NavStyled>
+      {/* Routes 取代舊版 Switch，只有在路由對應下才渲染 component */}
+      {/* <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/about" element={<About/>} />
+      </Routes> */}
     </NabBoxStyled>
   );
 }

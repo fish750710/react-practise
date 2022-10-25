@@ -106,7 +106,7 @@ function Billing() {
       url: {url}
       <hr></hr>
       <Box mt={2}>
-        <Typography variant='h4' gutterBottom>
+        <Typography variant='h4' gutterBottom style={{ color: 'red' }}>
           使用useRef
         </Typography>
         <div ref={refText}>這是一段字</div>
@@ -116,8 +116,23 @@ function Billing() {
         </button>
       </Box>
       <Box mt={2}>
+        <Typography variant='h4' gutterBottom style={{ color: 'red' }}>
+          使用useId
+        </Typography>
         <label htmlFor={onlyId}>產生唯一ＩＤ</label>
         <input type='text' id={onlyId} />
+      </Box>
+      <Box mt={2}>
+        <Typography variant='h4' gutterBottom style={{ color: 'red' }}>
+          使用 memo
+        </Typography>
+        <Child reset={reset}></Child>
+      </Box>
+      <Box mt={2}>
+        <Typography variant='h4' gutterBottom style={{ color: 'red' }}>
+          使用 useMemo
+        </Typography>
+        <ColorPicker ></ColorPicker>
       </Box>
     </>
   );
@@ -144,19 +159,32 @@ function SearchResults() {
 // useCallback (透過記憶 function 的記憶體位置，來避免子物件的重新渲染)
 
 // React.memo (經常變更不一樣的 props 不建議使用 memo。因為使用 memo 也是需要消耗記憶效能)
-const child = memo(({ reset }) => {
+const Child = memo(({ reset }) => {
   return (
     <>
+      {console.log('child render.....')}
       <button onClick={reset}>Reset</button>
     </>
   );
 });
+const reset = () => {
+  console.log('btn onClick reset...');
+};
 
 // useMemo (透過保存耗時的運算結果，在 dependency array 未改變時引用前次的運算結果)
 function ColorPicker() {
-  const [color, setColor] = useState('pick');
+  const [color, setColor] = useState('blue');
+  const [fontSize, setFontSize] = useState('20px');
   const style = useMemo(() => {
-    color;
+    {console.log('color useMemo render.....')}
+    return color;
   }, [color]); // 第一參數為 callback, 第二參數變更才重新 render (shallow compare)
-  return <Child style={style} />;
+
+  // 正常函數為重複計算
+  const style2 = () => {
+    {console.log('color render.....')}
+    return color;
+  }
+  // console.log('style', style2, style)
+  return <div style={{fontSize, color: style}}> useMemo....{style2()}</div>;
 }
